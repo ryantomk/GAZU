@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GAZU — Fashion That Moves With You</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --black: #090909;
+      --white: #f4f3ef;
+      --soft: #e9e8e4;
+      --muted: #747474;
+      --border: #d4d3ce;
+      --max: 1440px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", Arial, sans-serif;
+      background: var(--white);
+      color: var(--black);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    /* ---------- TOP BAR ---------- */
+    .topbar {
+      height: 28px;
+      background: #050505;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 5%;
+      font-size: 8px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .top-links {
+      display: flex;
+      gap: 18px;
+    }
+
+    /* ---------- HEADER ---------- */
+    header {
+      background: var(--white);
+      position: relative;
+      z-index: 20;
+    }
+
+    .nav {
+      max-width: var(--max);
+      margin: auto;
+      min-height: 82px;
+      padding: 0 5%;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .nav-left,
+    .nav-right {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-left {
+      gap: 30px;
+    }
+
+    .nav-right {
+      justify-content: flex-end;
+      gap: 22px;
+    }
+
+    .nav-link {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      transition: opacity .2s ease;
+    }
+
+    .nav-link:hover {
+      opacity: .5;
+    }
+
+    .logo {
+      font-family: "Manrope", sans-serif;
+      font-size: 31px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      line-height: 1;
+    }
+
+    .nav-action {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 10px;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .nav-action svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: 1.4;
+    }
+
+    .mobile-menu {
+      display: none;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      position: relative;
+      min-height: 610px;
+      max-width: var(--max);
+      margin: auto;
+      overflow: hidden;
+      background: #deddd9;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: grayscale(100%);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(232,231,227,.96) 0%, rgba(232,231,227,.3) 35%, rgba(232,231,227,0) 62%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 0 7%;
+    }
+
+    .eyebrow {
+      font-size: 10px;
+      line-height: 1.8;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .hero-word {
+      position: absolute;
+      left: 6%;
+      top: 50%;
+      transform: translateY(-48%);
+      font-size: clamp(100px, 17vw, 255px);
+      font-weight: 800;
+      line-height: .75;
+      letter-spacing: -.09em;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-side {
+      position: relative;
+      z-index: 3;
+      width: 190px;
+      margin-top: -180px;
+    }
+
+    .hero-side .eyebrow {
+      margin-bottom: 18px;
+    }
+
+    .hero-side p {
+      width: 100px;
+      height: 1px;
+      background: #777;
+      margin-bottom: 0;
+    }
+
+    .hero-buttons {
+      position: absolute;
+      bottom: 52px;
+      left: 7%;
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      z-index: 4;
+    }
+
+    .btn {
+      border: 0;
+      background: #090909;
+      color: #fff;
+      padding: 14px 23px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform .2s, background .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      background: #222;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #111;
+      padding: 14px 2px;
+      border-bottom: 1px solid #111;
+    }
+
+    .collection-label {
+      position: absolute;
+      right: 7%;
+      bottom: 56px;
+      z-index: 4;
+      font-size: 9px;
+      line-height: 1.7;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+    }
+
+    .collection-label::after {
+      content: "";
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: #111;
+      margin-top: 10px;
+    }
+
+    /* ---------- CATEGORY STRIP ---------- */
+    .categories {
+      max-width: var(--max);
+      margin: auto;
+      background: #0a0a0a;
+      color: #fff;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 25px 5%;
+      gap: 28px;
+    }
+
+    .category {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .category img {
+      width: 70px;
+      height: 95px;
+      object-fit: cover;
+      filter: grayscale(100%);
+    }
+
+    .category h3 {
+      font-size: 13px;
+      letter-spacing: .05em;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .category p {
+      font-size: 10px;
+      color: #aaa;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .category a {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      border-bottom: 1px solid #fff;
+      padding-bottom: 3px;
+    }
+
+    /* ---------- NEW SEASON ---------- */
+    .season {
+      max-width: var(--max);
+      min-height: 390px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 40% 60%;
+      overflow: hidden;
+      background: #d8d7d3;
+    }
+
+    .season-copy {
+      padding: 70px 7%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .season-copy h2 {
+      font-size: clamp(42px, 5vw, 72px);
+      line-height: .92;
+      letter-spacing: -.05em;
+      margin: 20px 0;
+      text-transform: uppercase;
+    }
+
+    .season-copy p {
+      max-width: 220px;
+      font-size: 12px;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .season-image {
+      height: 390px;
+      object-fit: cover;
+      object-position: center 25%;
+      filter: grayscale(100%);
+    }
+
+    /* ---------- TRUST STRIP ---------- */
+    .trust {
+      max-width: var(--max);
+      margin: auto;
+      padding: 37px 5%;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .trust-icon {
+      width: 28px;
+      height: 28px;
+      flex: 0 0 auto;
+    }
+
+    .trust h4 {
+      font-size: 10px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .trust p {
+      color: #6f6f6f;
+      font-size: 9px;
+    }
+
+    /* ---------- PRODUCTS ---------- */
+    .products-section {
+      max-width: var(--max);
+      margin: auto;
+      padding: 55px 5% 90px;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .section-heading h2 {
+      font-size: 19px;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+    }
+
+    .view-all {
+      font-size: 9px;
+      text-transform: uppercase;
+      font-weight: 700;
+      border-bottom: 1px solid #111;
+      padding-bottom: 4px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .product {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .product-image {
+      position: relative;
+      overflow: hidden;
+      background: #ddd;
+      aspect-ratio: .77;
+    }
+
+    .product-image img {
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(30%);
+      transition: transform .5s ease;
+    }
+
+    .product:hover .product-image img {
+      transform: scale(1.04);
+    }
+
+    .heart {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      width: 30px;
+      height: 30px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,.75);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .heart svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .product-info {
+      padding: 13px 2px;
+    }
+
+    .product-name {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .product-price {
+      font-size: 10px;
+      color: #666;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      background: #080808;
+      color: #fff;
+      padding: 60px 5%;
+    }
+
+    .footer-inner {
+      max-width: var(--max);
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 50px;
+    }
+
+    footer .logo {
+      font-size: 28px;
+      margin-bottom: 18px;
+    }
+
+    footer p {
+      color: #999;
+      max-width: 270px;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    footer h4 {
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    footer li {
+      list-style: none;
+      margin-bottom: 11px;
+    }
+
+    footer li a {
+      color: #999;
+      font-size: 10px;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 900px) {
+      .nav {
+        min-height: 65px;
+      }
+
+      .nav-left {
+        display: none;
+      }
+
+      .nav {
+        grid-template-columns: 35px 1fr auto;
+      }
+
+      .mobile-menu {
+        display: block;
+      }
+
+      .logo {
+        justify-self: center;
+        font-size: 25px;
+      }
+
+      .nav-right .nav-action span {
+        display: none;
+      }
+
+      .nav-right {
+        gap: 10px;
+      }
+
+      .hero {
+        min-height: 570px;
+      }
+
+      .hero-word {
+        font-size: 21vw;
+        left: 4%;
+      }
+
+      .categories {
+        grid-template-columns: 1fr;
+      }
+
+      .category {
+        grid-template-columns: 75px 1fr;
+      }
+
+      .season {
+        grid-template-columns: 1fr;
+      }
+
+      .season-copy {
+        min-height: 300px;
+      }
+
+      .season-image {
+        height: 430px;
+      }
+
+      .trust {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .topbar {
+        justify-content: center;
+        height: 25px;
+      }
+
+      .topbar .top-links {
+        display: none;
+      }
+
+      .hero {
+        min-height: 540px;
+      }
+
+      .hero-content {
+        padding: 35px 6%;
+        align-self: flex-start;
+        margin-top: 55px;
+      }
+
+      .hero-side {
+        margin-top: 0;
+      }
+
+      .hero-word {
+        top: 50%;
+        font-size: 25vw;
+      }
+
+      .hero-buttons {
+        left: 6%;
+        bottom: 30px;
+      }
+
+      .collection-label {
+        right: 6%;
+        bottom: 30px;
+      }
+
+      .trust {
+        grid-template-columns: 1fr 1fr;
+        gap: 25px 12px;
+      }
+
+      .trust-item {
+        align-items: flex-start;
+      }
+
+      .trust p {
+        line-height: 1.4;
+      }
+
+      .products-section {
+        padding-top: 40px;
+      }
+
+      .products {
+        gap: 10px;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- =========================================================
+       BUSINESS CUSTOMIZATION GUIDE
+       Search this file for these labels to quickly customize:
+       [CHANGE BUSINESS NAME]   = replace GAZU with your brand
+       [CHANGE TAGLINE]         = change the main brand message
+       [CHANGE PRICE]           = change product prices
+       [CHANGE IMAGE]           = replace product/hero image URLs
+       [ADD PRODUCT]            = duplicate a product card
+       [CHANGE CATEGORY]        = change Men/Women/Kids
+       [CHANGE DELIVERY]        = change delivery text
+       Product details are stored in product.html.
+       ========================================================= -->
+
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <span>Free delivery on orders above ₹999</span>
+    <div class="top-links">
+      <a href="#">Download App</a>
+      <a href="#">Track Order</a>
+      <a href="#">Help</a>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <nav class="nav">
+      <button class="mobile-menu" aria-label="Open menu" onclick="toggleMenu()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+
+      <div class="nav-left" id="desktopNav">
+        <a class="nav-link" href="#men">Men</a>
+        <a class="nav-link" href="#women">Women</a>
+        <a class="nav-link" href="#kids">Kids</a>
+        <a class="nav-link" href="#">Beauty</a>
+      </div>
+
+      <a href="#" class="logo">GAZU</a>
+
+      <div class="nav-right">
+        <a class="nav-action" href="#products">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="m20 20-4-4"></path>
+          </svg>
+          <span>Search</span>
+        </a>
+
+        <a class="nav-action" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="8" r="4"></circle>
+            <path d="M4 21c.7-4 3.2-6 8-6s7.3 2 8 6"></path>
+          </svg>
+          <span>Login</span>
+        </a>
+
+        <button class="nav-action" style="background:none;border:0;cursor:pointer;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"></path>
+          </svg>
+          <span>Wishlist</span>
+        </button>
+
+        <button class="nav-action" style="background:none;border:0;cursor:pointer;" onclick="openCart()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M5 8h14l-1 12H6L5 8Z"></path>
+            <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
+          </svg>
+          <span>Cart (<b id="cartCount">0</b>)</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <main>
+    <section class="hero">
+      <!-- Replace this image URL with your own hero image -->
+      <img
+        class="hero-image"
+        src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1800&q=85"
+        alt="Fashion model"
+      />
+
+      <div class="hero-word">GAZU</div>
+
+      <div class="hero-content">
+        <div class="hero-side">
+          <div class="eyebrow">Fashion<br>That Moves<br>With You.</div>
+          <p></p>
+        </div>
+      </div>
+
+      <div class="hero-buttons">
+        <a class="btn" href="#products">Shop Now</a>
+        <a class="btn btn-outline" href="#season">Explore New In</a>
+      </div>
+
+      <div class="collection-label">
+        New<br>Collection<br>2024
+      </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="categories">
+      <div class="category" id="men">
+        <img src="https://images.unsplash.com/photo-1506629905607-d9e29b7f9c08?auto=format&fit=crop&w=500&q=80" alt="Men">
+        <div>
+          <h3>Men</h3>
+          <p>Elevated everyday essentials.</p>
+          <a href="#products">Shop Men →</a>
+        </div>
+      </div>
+
+      <div class="category" id="women">
+        <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=500&q=80" alt="Women">
+        <div>
+          <h3>Women</h3>
+          <p>Effortless style for every you.</p>
+          <a href="#products">Shop Women →</a>
+        </div>
+      </div>
+
+      <div class="category" id="kids">
+        <img src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=500&q=80" alt="Kids">
+        <div>
+          <h3>Kids</h3>
+          <p>Comfort meets cool everyday.</p>
+          <a href="#products">Shop Kids →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW SEASON -->
+    <section class="season" id="season">
+      <div class="season-copy">
+        <div class="eyebrow">New Season</div>
+        <h2>New<br>Vibes</h2>
+        <p>Discover everything new and now.</p>
+        <div>
+          <a href="#products" class="btn">Explore Collection</a>
+        </div>
+      </div>
+
+      <img
+        class="season-image"
+        src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1400&q=85"
+        alt="New season fashion"
+      >
+    </section>
+
+    <!-- TRUST -->
+    <section class="trust">
+      <div class="trust-item">
+        <svg class="trust-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor">
+          <path d="M3 9h17v14H3zM20 14h5l4 4v5h-9z"></path>
+          <circle cx="9" cy="25" r="2.5"></circle>
+          <circle cx="25" cy="25" r="2.5"></circle>
+        </svg>
+        <div>
+          <h4>Fast Delivery</h4>
+          <p>Quick & safe delivery</p>
+        </div>
+      </div>
+
+      <div class="trust-item">
+        <svg class="trust-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor">
+          <path d="M4 8 16 3l12 5-12 5L4 8Z"></path>
+          <path d="M4 8v15l12 6 12-6V8M16 13v16"></path>
+        </svg>
+        <div>
+          <h4>Easy Returns</h4>
+          <p>Within 15 days</p>
+        </div>
+      </div>
+
+      <div class="trust-item">
+        <svg class="trust-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor">
+          <circle cx="16" cy="16" r="12"></circle>
+          <path d="m11 16 3 3 7-7"></path>
+        </svg>
+        <div>
+          <h4>Quality Assured</h4>
+          <p>Best fashion, best quality</p>
+        </div>
+      </div>
+
+      <div class="trust-item">
+        <svg class="trust-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor">
+          <rect x="7" y="13" width="18" height="15" rx="2"></rect>
+          <path d="M11 13V9a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        <div>
+          <h4>Secure Payment</h4>
+          <p>100% secure checkout</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="products-section" id="products">
+      <div class="section-heading">
+        <h2>Best of GAZU</h2>
+        <a href="#" class="view-all">View All</a>
+      </div>
+
+      <div class="products">
+
+        <article class="product" onclick="window.location.href='product.html?id=oversized-essential-tee'">
+          <div class="product-image">
+            <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/>
+              </svg>
+            </button>
+            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=85" alt="Oversized Essential Tee">
+          </div>
+          <div class="product-info">
+            <div class="product-name">Oversized Essential Tee</div>
+            <div class="product-price">₹1,499</div>
+          </div>
+        </article>
+
+        <article class="product" onclick="window.location.href='product.html?id=relaxed-graphic-tee'">
+          <div class="product-image">
+            <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/>
+              </svg>
+            </button>
+            <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=800&q=85" alt="Relaxed Graphic Tee">
+          </div>
+          <div class="product-info">
+            <div class="product-name">Relaxed Graphic Tee</div>
+            <div class="product-price">₹1,799</div>
+          </div>
+        </article>
+
+        <article class="product" onclick="window.location.href='product.html?id=classic-black-tee'">
+          <div class="product-image">
+            <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/>
+              </svg>
+            </button>
+            <img src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=800&q=85" alt="Classic Black Tee">
+          </div>
+          <div class="product-info">
+            <div class="product-name">Classic Black Tee</div>
+            <div class="product-price">₹1,299</div>
+          </div>
+        </article>
+
+        <article class="product" onclick="window.location.href='product.html?id=minimal-cotton-shirt'">
+          <div class="product-image">
+            <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/>
+              </svg>
+            </button>
+            <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=800&q=85" alt="Minimal Cotton Shirt">
+          </div>
+          <div class="product-info">
+            <div class="product-name">Minimal Cotton Shirt</div>
+            <div class="product-price">₹2,499</div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="logo">GAZU</div>
+        <p>Modern essentials designed for people who move with confidence. Fashion that moves with you.</p>
+      </div>
+
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#men">Men</a></li>
+          <li><a href="#women">Women</a></li>
+          <li><a href="#kids">Kids</a></li>
+          <li><a href="#products">New Arrivals</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Follow</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Pinterest</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let cartCount = 0;
+
+    function addToCart(productName) {
+      cartCount++;
+      document.getElementById("cartCount").textContent = cartCount;
+      alert(productName + " added to cart.");
+    }
+
+    function openCart() {
+      alert(
+        cartCount === 0
+          ? "Your cart is empty."
+          : "You have " + cartCount + " item(s) in your cart."
+      );
+    }
+
+    function toggleHeart(button) {
+      const svg = button.querySelector("svg");
+      const active = button.dataset.active === "true";
+
+      if (active) {
+        svg.setAttribute("fill", "none");
+        button.dataset.active = "false";
+      } else {
+        svg.setAttribute("fill", "currentColor");
+        button.dataset.active = "true";
+      }
+    }
+
+    function toggleMenu() {
+      const nav = document.getElementById("desktopNav");
+
+      if (nav.style.display === "flex") {
+        nav.style.display = "";
+      } else {
+        nav.style.display = "flex";
+        nav.style.position = "absolute";
+        nav.style.top = "65px";
+        nav.style.left = "0";
+        nav.style.right = "0";
+        nav.style.background = "#f4f3ef";
+        nav.style.padding = "20px 6%";
+        nav.style.flexDirection = "column";
+        nav.style.alignItems = "flex-start";
+        nav.style.zIndex = "30";
+      }
+    }
+  </script>
+
+</body>
+</html>
