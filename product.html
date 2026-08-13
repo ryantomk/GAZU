@@ -92,6 +92,21 @@
     .qty span {
       width:40px; display:grid; place-items:center; font-size:11px;
     }
+
+    .whatsapp-product {
+      width:100%;
+      margin-top:10px;
+      padding:17px;
+      border:0;
+      background:#25D366;
+      color:#fff;
+      text-transform:uppercase;
+      font-size:10px;
+      font-weight:700;
+      cursor:pointer;
+    }
+    .whatsapp-product:hover { opacity:.9; }
+
     .add {
       width:100%; margin-top:28px; padding:17px; border:0; background:#090909;
       color:#fff; text-transform:uppercase; font-size:10px; font-weight:700;
@@ -225,6 +240,7 @@
         </div>
 
         <button class="add" onclick="addToCart()">Add to cart</button>
+<button class="whatsapp-product" onclick="orderOnWhatsApp()">Order on WhatsApp</button>
         <button class="wishlist" onclick="toggleWishlist()">♡ Add to wishlist</button>
 
         <div class="benefits">
@@ -434,6 +450,35 @@
         btn.dataset.saved = "true";
       }
     }
+  
+    /*
+      [CHANGE WHATSAPP NUMBER]
+      Replace 919999999999 with the business WhatsApp number.
+      Country code + number only: no +, spaces or brackets.
+    */
+    const WHATSAPP_NUMBER = "917306880738";
+
+    function orderOnWhatsApp() {
+      const total = product.price * quantity;
+
+      const message =
+        "Hello RYANTO!%0A%0A" +
+        "I want to place an order:%0A" +
+        "Product: " + encodeURIComponent(product.name) + "%0A" +
+        "Category: " + encodeURIComponent(product.category) + "%0A" +
+        "Size: " + encodeURIComponent(selectedSize) + "%0A" +
+        "Colour: " + encodeURIComponent(selectedColor) + "%0A" +
+        "Quantity: " + quantity + "%0A" +
+        "Price: ₹" + product.price.toLocaleString("en-IN") + "%0A" +
+        "Total: ₹" + total.toLocaleString("en-IN") + "%0A%0A" +
+        "Please confirm availability and delivery details.";
+
+      window.open(
+        "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + message,
+        "_blank"
+      );
+    }
+
   </script>
 </body>
 </html>
