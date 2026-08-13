@@ -231,6 +231,27 @@
       z-index: 4;
     }
 
+
+    /* WhatsApp ordering */
+    .whatsapp-order {
+      background: #111;
+      color: #fff;
+      border: 0;
+      padding: 14px 20px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .whatsapp-order:hover {
+      opacity: .88;
+      transform: translateY(-2px);
+    }
+
     .btn {
       border: 0;
       background: #090909;
@@ -929,8 +950,7 @@
             </button>
             <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=85" alt="Classic Black Tee">
           </div>
-          <div class="product-info"><div class="product-name">Classic Black Tee</div><div class="product-price">₹1,299</div></div>
-        </article>
+          <div class="product-info"><div class="product-name">Classic Black Tee</div><div class="product-price">₹1,299</div><button class="whatsapp-order" onclick="event.stopPropagation(); quickWhatsAppOrder(this)" data-price="1,299" style="margin-top:10px;width:100%;">Order on WhatsApp</button></div></article>
         <article class="product" onclick="window.location.href='product.html?id=oversized-essential-tee'">
           <div class="product-image">
             <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)" aria-label="Add to wishlist">
@@ -938,8 +958,7 @@
             </button>
             <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=800&q=85" alt="Oversized Essential Tee">
           </div>
-          <div class="product-info"><div class="product-name">Oversized Essential Tee</div><div class="product-price">₹1,499</div></div>
-        </article>
+          <div class="product-info"><div class="product-name">Oversized Essential Tee</div><div class="product-price">₹1,499</div><button class="whatsapp-order" onclick="event.stopPropagation(); quickWhatsAppOrder(this)" data-price="1,499" style="margin-top:10px;width:100%;">Order on WhatsApp</button></div></article>
         <article class="product" onclick="window.location.href='product.html?id=relaxed-graphic-tee'">
           <div class="product-image">
             <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)" aria-label="Add to wishlist">
@@ -947,8 +966,7 @@
             </button>
             <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=800&q=85" alt="Relaxed Graphic Tee">
           </div>
-          <div class="product-info"><div class="product-name">Relaxed Graphic Tee</div><div class="product-price">₹1,799</div></div>
-        </article>
+          <div class="product-info"><div class="product-name">Relaxed Graphic Tee</div><div class="product-price">₹1,799</div><button class="whatsapp-order" onclick="event.stopPropagation(); quickWhatsAppOrder(this)" data-price="1,799" style="margin-top:10px;width:100%;">Order on WhatsApp</button></div></article>
         <article class="product" onclick="window.location.href='product.html?id=minimal-cotton-shirt'">
           <div class="product-image">
             <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)" aria-label="Add to wishlist">
@@ -956,8 +974,7 @@
             </button>
             <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=800&q=85" alt="Minimal Cotton Shirt">
           </div>
-          <div class="product-info"><div class="product-name">Minimal Cotton Shirt</div><div class="product-price">₹2,499</div></div>
-        </article>
+          <div class="product-info"><div class="product-name">Minimal Cotton Shirt</div><div class="product-price">₹2,499</div><button class="whatsapp-order" onclick="event.stopPropagation(); quickWhatsAppOrder(this)" data-price="2,499" style="margin-top:10px;width:100%;">Order on WhatsApp</button></div></article>
       </div>
     </section>
 
@@ -972,8 +989,7 @@
             </button>
             <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=800&q=85" alt="Women's Relaxed Top">
           </div>
-          <div class="product-info"><div class="product-name">Women's Relaxed Top</div><div class="product-price">₹1,599</div></div>
-        </article>
+          <div class="product-info"><div class="product-name">Women's Relaxed Top</div><div class="product-price">₹1,599</div><button class="whatsapp-order" onclick="event.stopPropagation(); quickWhatsAppOrder(this)" data-price="1,599" style="margin-top:10px;width:100%;">Order on WhatsApp</button></div></article>
         <article class="product" onclick="window.location.href='product.html?id=women-minimal-dress'">
           <div class="product-image">
             <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)" aria-label="Add to wishlist">
@@ -981,8 +997,7 @@
             </button>
             <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=800&q=85" alt="Minimal Everyday Dress">
           </div>
-          <div class="product-info"><div class="product-name">Minimal Everyday Dress</div><div class="product-price">₹2,299</div></div>
-        </article>
+          <div class="product-info"><div class="product-name">Minimal Everyday Dress</div><div class="product-price">₹2,299</div><button class="whatsapp-order" onclick="event.stopPropagation(); quickWhatsAppOrder(this)" data-price="2,299" style="margin-top:10px;width:100%;">Order on WhatsApp</button></div></article>
         <article class="product" onclick="window.location.href='product.html?id=women-oversized-shirt'">
           <div class="product-image">
             <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)" aria-label="Add to wishlist">
@@ -990,8 +1005,7 @@
             </button>
             <img src="https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=800&q=85" alt="Oversized Cotton Shirt">
           </div>
-          <div class="product-info"><div class="product-name">Oversized Cotton Shirt</div><div class="product-price">₹2,099</div></div>
-        </article>
+          <div class="product-info"><div class="product-name">Oversized Cotton Shirt</div><div class="product-price">₹2,099</div><button class="whatsapp-order" onclick="event.stopPropagation(); quickWhatsAppOrder(this)" data-price="2,099" style="margin-top:10px;width:100%;">Order on WhatsApp</button></div></article>
         <article class="product" onclick="window.location.href='product.html?id=women-casual-tee'">
           <div class="product-image">
             <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)" aria-label="Add to wishlist">
@@ -999,8 +1013,7 @@
             </button>
             <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=800&q=85" alt="Essential Women's Tee">
           </div>
-          <div class="product-info"><div class="product-name">Essential Women's Tee</div><div class="product-price">₹1,399</div></div>
-        </article>
+          <div class="product-info"><div class="product-name">Essential Women's Tee</div><div class="product-price">₹1,399</div><button class="whatsapp-order" onclick="event.stopPropagation(); quickWhatsAppOrder(this)" data-price="1,399" style="margin-top:10px;width:100%;">Order on WhatsApp</button></div></article>
       </div>
     </section>
 
@@ -1091,6 +1104,36 @@
         nav.style.zIndex = "30";
       }
     }
+  
+    /*
+      ==========================================================
+      WHATSAPP ORDERING
+      [CHANGE WHATSAPP NUMBER]
+      Replace 919999999999 with the business WhatsApp number.
+      Use country code + number WITHOUT +, spaces, or brackets.
+
+      Example Kerala/India:
+      919876543210
+      ==========================================================
+    */
+    const WHATSAPP_NUMBER = "917306880738";
+
+    function quickWhatsAppOrder(button) {
+      const card = button.closest(".product");
+      const name = card.querySelector(".product-name").textContent.trim();
+      const price = button.dataset.price;
+
+      const message =
+        "Hello RYANTO!%0A%0A" +
+        "I want to order:%0A" +
+        "Product: " + encodeURIComponent(name) + "%0A" +
+        "Price: ₹" + encodeURIComponent(price) + "%0A" +
+        "Quantity: 1%0A%0A" +
+        "Please confirm availability.";
+
+      window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + message, "_blank");
+    }
+
   </script>
 
 </body>
