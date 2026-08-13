@@ -399,6 +399,8 @@
     }
 
     /* ---------- PRODUCTS ---------- */
+    .women-products { border-top: 1px solid var(--border); margin-top: 10px; }
+
     .products-section {
       max-width: var(--max);
       margin: auto;
@@ -789,7 +791,7 @@
         <div>
           <h3>Men</h3>
           <p>Elevated everyday essentials.</p>
-          <a href="#products">Shop Men →</a>
+          <a href="#men-products">Shop Men →</a>
         </div>
       </div>
 
@@ -798,7 +800,7 @@
         <div>
           <h3>Women</h3>
           <p>Effortless style for every you.</p>
-          <a href="#products">Shop Women →</a>
+          <a href="#women-products">Shop Women →</a>
         </div>
       </div>
 
@@ -878,78 +880,91 @@
       </div>
     </section>
 
-    <!-- PRODUCTS -->
-    <section class="products-section" id="products">
-      <div class="section-heading">
-        <h2>Best of GAZU</h2>
-        <a href="#" class="view-all">View All</a>
-      </div>
-
+    <!-- FOR HIM PRODUCTS: copy a product card below to add another -->
+    <section class="products-section" id="men-products">
+      <div class="section-heading"><div><div class="eyebrow">For Him</div><h2>Men's Collection</h2></div><a href="#men-products" class="view-all">View All</a></div>
       <div class="products">
-
+        <article class="product" onclick="window.location.href='product.html?id=classic-black-tee'">
+          <div class="product-image">
+            <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>
+            </button>
+            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=85" alt="Classic Black Tee">
+          </div>
+          <div class="product-info"><div class="product-name">Classic Black Tee</div><div class="product-price">₹1,299</div></div>
+        </article>
         <article class="product" onclick="window.location.href='product.html?id=oversized-essential-tee'">
           <div class="product-image">
-            <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/>
-              </svg>
+            <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>
             </button>
-            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=85" alt="Oversized Essential Tee">
+            <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=800&q=85" alt="Oversized Essential Tee">
           </div>
-          <div class="product-info">
-            <div class="product-name">Oversized Essential Tee</div>
-            <div class="product-price">₹1,499</div>
-          </div>
+          <div class="product-info"><div class="product-name">Oversized Essential Tee</div><div class="product-price">₹1,499</div></div>
         </article>
-
         <article class="product" onclick="window.location.href='product.html?id=relaxed-graphic-tee'">
           <div class="product-image">
-            <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/>
-              </svg>
+            <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>
             </button>
             <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=800&q=85" alt="Relaxed Graphic Tee">
           </div>
-          <div class="product-info">
-            <div class="product-name">Relaxed Graphic Tee</div>
-            <div class="product-price">₹1,799</div>
-          </div>
+          <div class="product-info"><div class="product-name">Relaxed Graphic Tee</div><div class="product-price">₹1,799</div></div>
         </article>
-
-        <article class="product" onclick="window.location.href='product.html?id=classic-black-tee'">
-          <div class="product-image">
-            <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/>
-              </svg>
-            </button>
-            <img src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=800&q=85" alt="Classic Black Tee">
-          </div>
-          <div class="product-info">
-            <div class="product-name">Classic Black Tee</div>
-            <div class="product-price">₹1,299</div>
-          </div>
-        </article>
-
         <article class="product" onclick="window.location.href='product.html?id=minimal-cotton-shirt'">
           <div class="product-image">
-            <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/>
-              </svg>
+            <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>
             </button>
             <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=800&q=85" alt="Minimal Cotton Shirt">
           </div>
-          <div class="product-info">
-            <div class="product-name">Minimal Cotton Shirt</div>
-            <div class="product-price">₹2,499</div>
-          </div>
+          <div class="product-info"><div class="product-name">Minimal Cotton Shirt</div><div class="product-price">₹2,499</div></div>
         </article>
-
       </div>
     </section>
-  </main>
+
+    <!-- FOR HER PRODUCTS: copy a product card below to add another -->
+    <section class="products-section" id="women-products">
+      <div class="section-heading"><div><div class="eyebrow">For Her</div><h2>Women's Collection</h2></div><a href="#women-products" class="view-all">View All</a></div>
+      <div class="products">
+        <article class="product" onclick="window.location.href='product.html?id=women-relaxed-top'">
+          <div class="product-image">
+            <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>
+            </button>
+            <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=800&q=85" alt="Women's Relaxed Top">
+          </div>
+          <div class="product-info"><div class="product-name">Women's Relaxed Top</div><div class="product-price">₹1,599</div></div>
+        </article>
+        <article class="product" onclick="window.location.href='product.html?id=women-minimal-dress'">
+          <div class="product-image">
+            <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>
+            </button>
+            <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=800&q=85" alt="Minimal Everyday Dress">
+          </div>
+          <div class="product-info"><div class="product-name">Minimal Everyday Dress</div><div class="product-price">₹2,299</div></div>
+        </article>
+        <article class="product" onclick="window.location.href='product.html?id=women-oversized-shirt'">
+          <div class="product-image">
+            <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>
+            </button>
+            <img src="https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=800&q=85" alt="Oversized Cotton Shirt">
+          </div>
+          <div class="product-info"><div class="product-name">Oversized Cotton Shirt</div><div class="product-price">₹2,099</div></div>
+        </article>
+        <article class="product" onclick="window.location.href='product.html?id=women-casual-tee'">
+          <div class="product-image">
+            <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>
+            </button>
+            <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=800&q=85" alt="Essential Women's Tee">
+          </div>
+          <div class="product-info"><div class="product-name">Essential Women's Tee</div><div class="product-price">₹1,399</div></div>
+        </article>
+      </div>
+    </section>
 
   <!-- FOOTER -->
   <footer>
