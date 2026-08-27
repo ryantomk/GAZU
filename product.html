@@ -3,7 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product | RYANTO</title>
+  <title id="pageTitle">Product | RYANTO</title>
+  <meta name="description" id="pageDescription" content="Shop modern, minimal fashion essentials at RYANTO.">
+  <meta name="theme-color" content="#090909">
+  <meta property="og:type" content="product">
+  <meta property="og:site_name" content="RYANTO">
+  <meta property="og:title" id="ogTitle" content="RYANTO">
+  <meta property="og:description" id="ogDescription" content="Shop modern, minimal fashion essentials at RYANTO.">
+  <meta property="og:image" id="ogImage" content="">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23090909'/%3E%3Ctext x='16' y='22' font-family='Arial,Helvetica,sans-serif' font-size='17' font-weight='800' fill='%23f4f3ef' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -21,6 +30,17 @@
     a { color:inherit; text-decoration:none; }
     button { font:inherit; }
     img { display:block; width:100%; }
+    :focus-visible { outline:2px solid #090909; outline-offset:3px; }
+    .skip-link {
+      position:absolute; left:10px; top:-60px; background:#090909; color:#fff;
+      padding:12px 18px; font-size:11px; text-transform:uppercase; font-weight:700;
+      z-index:999; transition:top .2s ease;
+    }
+    .skip-link:focus { top:10px; }
+    .sr-only {
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+      overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    }
     .topbar {
       height:28px; background:#050505; color:#fff; display:flex;
       justify-content:space-between; align-items:center; padding:0 5%;
@@ -138,6 +158,68 @@
       background:#080808; color:#fff; padding:50px 5%;
       text-align:center; font-size:10px;
     }
+
+    .nav-action { position:relative; }
+    .cart-badge {
+      position:absolute; top:-6px; right:-8px; background:#090909; color:#fff;
+      font-size:8px; font-weight:700; min-width:15px; height:15px; border-radius:50%;
+      display:grid; place-items:center; padding:0 2px;
+    }
+
+    .toast-container {
+      position:fixed; bottom:22px; left:50%; transform:translateX(-50%);
+      z-index:120; display:flex; flex-direction:column; gap:8px; align-items:center; pointer-events:none;
+    }
+    .toast {
+      background:#090909; color:#fff; padding:13px 22px; font-size:11px; letter-spacing:.02em;
+      border-radius:3px; box-shadow:0 8px 24px rgba(0,0,0,.25);
+      animation:toastIn .25s ease, toastOut .3s ease 2.2s forwards; white-space:nowrap;
+    }
+    @keyframes toastIn { from{opacity:0;transform:translateY(10px);} to{opacity:1;transform:translateY(0);} }
+    @keyframes toastOut { to{opacity:0;transform:translateY(6px);} }
+
+    .cart-overlay {
+      position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:98;
+      opacity:0; pointer-events:none; transition:opacity .25s ease;
+    }
+    .cart-overlay.open { opacity:1; pointer-events:auto; }
+    .cart-drawer {
+      position:fixed; top:0; right:0; height:100%; width:400px; max-width:92vw;
+      background:#fdfdfc; z-index:99; transform:translateX(100%);
+      transition:transform .32s cubic-bezier(.4,0,.2,1); display:flex; flex-direction:column;
+      box-shadow:-12px 0 40px rgba(0,0,0,.15);
+    }
+    .cart-drawer.open { transform:translateX(0); }
+    .cart-header { padding:22px 24px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); }
+    .cart-header h2 { font-size:13px; text-transform:uppercase; letter-spacing:.08em; }
+    .cart-close { background:none; border:0; cursor:pointer; font-size:22px; line-height:1; color:#111; }
+    .cart-items { flex:1; overflow-y:auto; padding:6px 24px; }
+    .cart-item { display:grid; grid-template-columns:60px 1fr; gap:14px; padding:16px 0; border-bottom:1px solid var(--border); }
+    .cart-item img { width:60px; height:74px; object-fit:cover; }
+    .cart-item-name { font-size:11px; font-weight:700; text-transform:uppercase; margin-bottom:4px; }
+    .cart-item-meta { font-size:10px; color:#777; margin-bottom:8px; }
+    .cart-item-row { display:flex; justify-content:space-between; align-items:center; }
+    .cart-item-remove {
+      font-size:9px; text-transform:uppercase; font-weight:700; letter-spacing:.04em;
+      background:none; border:0; cursor:pointer; color:#777; text-decoration:underline; text-underline-offset:2px;
+    }
+    .cart-item-price { font-size:11px; font-weight:700; }
+    .cart-empty { text-align:center; padding:60px 10px; font-size:12px; color:#777; }
+    .cart-empty span { display:block; font-size:30px; margin-bottom:14px; }
+    .cart-footer { padding:20px 24px 24px; border-top:1px solid var(--border); }
+    .cart-subtotal { display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:700; text-transform:uppercase; margin-bottom:14px; }
+    .cart-checkout-note { font-size:9px; color:#888; margin-top:10px; text-align:center; }
+
+    .related {
+      max-width:1200px; margin:auto; padding:0 5% 90px;
+    }
+    .related h2 { font-size:16px; text-transform:uppercase; letter-spacing:.05em; margin-bottom:20px; }
+    .related-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+    .related-card { cursor:pointer; }
+    .related-card img { aspect-ratio:.8; object-fit:cover; background:#ddd; margin-bottom:10px; }
+    .related-name { font-size:11px; font-weight:600; text-transform:uppercase; margin-bottom:4px; }
+    .related-price { font-size:10px; color:#666; }
+    @media(max-width:800px) { .related-grid { grid-template-columns:repeat(2,1fr); } }
     @media(max-width:800px) {
       .nav { min-height:65px; grid-template-columns:1fr auto; }
       .nav-left { display:none; }
@@ -157,6 +239,7 @@
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <!-- =========================================================
        PRODUCT PAGE CUSTOMIZATION
        [CHANGE BUSINESS NAME] = change "RYANTO" in the header/title
@@ -189,26 +272,33 @@
       <a href="index.html" class="logo">RYANTO</a>
 
       <div class="nav-right">
-        <a class="nav-action" href="index.html#products">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <a class="nav-action" href="index.html#products" aria-label="Search products">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
             <circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path>
           </svg><span>Search</span>
         </a>
-        <a class="nav-action" href="#">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <a class="nav-action" href="#" aria-label="Account login">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
             <circle cx="12" cy="8" r="4"></circle><path d="M4 21c.7-4 3.2-6 8-6s7.3 2 8 6"></path>
           </svg><span>Login</span>
         </a>
-        <a class="nav-action" href="index.html#products">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <button class="nav-action" style="background:none;border:0;cursor:pointer;" aria-label="View wishlist" onclick="openDrawer('wishlist')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"></path>
+          </svg><span>Wishlist</span>
+          <span class="cart-badge" id="wishlistCount" hidden>0</span>
+        </button>
+        <button class="nav-action" style="background:none;border:0;cursor:pointer;" aria-label="Open shopping cart" onclick="openDrawer('cart')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
             <path d="M5 8h14l-1 12H6L5 8Z"></path><path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
           </svg><span>Cart</span>
-        </a>
+          <span class="cart-badge" id="cartCount" aria-live="polite">0</span>
+        </button>
       </div>
     </nav>
   </header>
 
-  <main class="page">
+  <main class="page" id="main">
     <a href="index.html" class="back">← Back to RYANTO</a>
 
     <section class="product-layout">
@@ -231,17 +321,17 @@
         </div>
 
         <div class="option">
-          <div class="option-title">Quantity</div>
-          <div class="qty">
-            <button onclick="changeQty(-1)">−</button>
-            <span id="quantity">1</span>
-            <button onclick="changeQty(1)">+</button>
+          <div class="option-title" id="qtyLabel">Quantity</div>
+          <div class="qty" role="group" aria-labelledby="qtyLabel">
+            <button onclick="changeQty(-1)" aria-label="Decrease quantity">−</button>
+            <span id="quantity" aria-live="polite">1</span>
+            <button onclick="changeQty(1)" aria-label="Increase quantity">+</button>
           </div>
         </div>
 
         <button class="add" onclick="addToCart()">Add to cart</button>
-<button class="whatsapp-product" onclick="orderOnWhatsApp()">Order on WhatsApp</button>
-        <button class="wishlist" onclick="toggleWishlist()">♡ Add to wishlist</button>
+        <button class="whatsapp-product" onclick="orderOnWhatsApp()">Order on WhatsApp</button>
+        <button class="wishlist" id="wishlistBtn" onclick="toggleWishlist()" aria-pressed="false">♡ Add to wishlist</button>
 
         <div class="benefits">
           <div class="benefit">
@@ -268,7 +358,29 @@
     </section>
   </main>
 
+  <section class="related" id="related" aria-labelledby="relatedHeading">
+    <h2 id="relatedHeading">You may also like</h2>
+    <div class="related-grid" id="relatedGrid"></div>
+  </section>
+
   <footer>© 2026 RYANTO — Fashion That Moves With You.</footer>
+
+  <!-- CART / WISHLIST DRAWER -->
+  <div class="cart-overlay" id="cartOverlay" onclick="closeDrawer()"></div>
+  <div class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+    <div class="cart-header">
+      <h2 id="drawerTitle">Your Bag</h2>
+      <button class="cart-close" onclick="closeDrawer()" aria-label="Close">&times;</button>
+    </div>
+    <div class="cart-items" id="drawerItems"></div>
+    <div class="cart-footer" id="cartFooter">
+      <div class="cart-subtotal"><span>Subtotal</span><span id="cartSubtotal">₹0</span></div>
+      <button class="add" style="margin-top:0;" onclick="checkoutOnWhatsApp()">Checkout on WhatsApp</button>
+      <p class="cart-checkout-note">Taxes and delivery calculated at confirmation.</p>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
   <script>
     /*
@@ -343,6 +455,86 @@
         features: ["Graphic print", "Relaxed fit", "Cotton blend", "Unisex"]
       },
 
+      // [PRODUCT 4]
+      "minimal-cotton-shirt": {
+        name: "Minimal Cotton Shirt",
+        price: 2499,
+        category: "Men",
+        description: "A clean, minimal cotton shirt built for versatile everyday wear.",
+        details: "Tailored with breathable cotton and a straight fit that pairs equally well dressed up or down.",
+        images: [
+          "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=85"
+        ],
+        colors: ["White", "Black"],
+        sizes: ["S", "M", "L", "XL"],
+        features: ["100% cotton", "Straight fit", "Breathable weave", "Easy iron"]
+      },
+
+      // [PRODUCT 5]
+      "women-relaxed-top": {
+        name: "Women's Relaxed Top",
+        price: 1599,
+        category: "Women",
+        description: "A relaxed, breathable top designed for effortless everyday styling.",
+        details: "Soft-touch fabric with a flattering relaxed cut that moves easily from day to night.",
+        images: [
+          "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=800&q=85"
+        ],
+        colors: ["Beige", "Black"],
+        sizes: ["XS", "S", "M", "L"],
+        features: ["Soft-touch fabric", "Relaxed fit", "Breathable", "Machine washable"]
+      },
+
+      // [PRODUCT 6]
+      "women-minimal-dress": {
+        name: "Minimal Everyday Dress",
+        price: 2299,
+        category: "Women",
+        description: "A minimal everyday dress with a clean silhouette for effortless dressing.",
+        details: "Designed with a fluid drape and a flattering fit that works for both casual and dressed-up occasions.",
+        images: [
+          "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=800&q=85"
+        ],
+        colors: ["Black", "Olive"],
+        sizes: ["XS", "S", "M", "L"],
+        features: ["Fluid drape", "Flattering fit", "Lightweight fabric", "Versatile styling"]
+      },
+
+      // [PRODUCT 7]
+      "women-oversized-shirt": {
+        name: "Oversized Cotton Shirt",
+        price: 2099,
+        category: "Women",
+        description: "An oversized cotton shirt designed for relaxed, everyday layering.",
+        details: "A wardrobe staple cut in breathable cotton with a roomy, drop-shoulder silhouette.",
+        images: [
+          "https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=800&q=85"
+        ],
+        colors: ["White", "Beige"],
+        sizes: ["S", "M", "L", "XL"],
+        features: ["100% cotton", "Drop-shoulder fit", "Layer-friendly", "Machine washable"]
+      },
+
+      // [PRODUCT 8]
+      "women-casual-tee": {
+        name: "Essential Women's Tee",
+        price: 1399,
+        category: "Women",
+        description: "A soft everyday essential tee designed for effortless casual wear.",
+        details: "Cut from breathable cotton jersey with a comfortable regular fit for daily rotation.",
+        images: [
+          "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=1200&q=85",
+          "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=85"
+        ],
+        colors: ["White", "Black", "Grey"],
+        sizes: ["XS", "S", "M", "L"],
+        features: ["Cotton jersey", "Regular fit", "Soft handfeel", "Machine washable"]
+      },
+
       // [ADD PRODUCT]
       // Copy the block above, paste it here, then change the id.
       // Example:
@@ -367,22 +559,53 @@
     const productId = params.get("id") || "classic-black-tee";
     const product = PRODUCTS[productId] || PRODUCTS["classic-black-tee"];
 
+    /*
+      [CHANGE WHATSAPP NUMBER]
+      Replace with the business WhatsApp number.
+      Country code + number only: no +, spaces or brackets.
+    */
+    const WHATSAPP_NUMBER = "917306880738";
+
     let quantity = 1;
     let selectedSize = product.sizes[0];
     let selectedColor = product.colors[0];
 
     document.title = product.name + " | RYANTO";
+    document.getElementById("pageTitle").textContent = product.name + " | RYANTO";
+    document.getElementById("pageDescription").setAttribute("content", product.description);
+    document.getElementById("ogTitle").setAttribute("content", product.name + " | RYANTO");
+    document.getElementById("ogDescription").setAttribute("content", product.description);
+    document.getElementById("ogImage").setAttribute("content", product.images[0]);
     document.getElementById("category").textContent = product.category;
     document.getElementById("productName").textContent = product.name;
     document.getElementById("productPrice").textContent = "₹" + product.price.toLocaleString("en-IN");
     document.getElementById("productDescription").textContent = product.description;
     document.getElementById("detailsText").textContent = product.details;
 
+    // Structured data for search engines
+    const ldScript = document.createElement("script");
+    ldScript.type = "application/ld+json";
+    ldScript.textContent = JSON.stringify({
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": product.name,
+      "description": product.description,
+      "image": product.images,
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "INR",
+        "price": product.price,
+        "availability": "https://schema.org/InStock"
+      }
+    });
+    document.head.appendChild(ldScript);
+
     const gallery = document.getElementById("gallery");
     product.images.forEach((image, index) => {
       const img = document.createElement("img");
       img.src = image;
-      img.alt = product.name + " image " + (index + 1);
+      img.alt = product.name + " — view " + (index + 1);
+      if (index > 0) { img.loading = "lazy"; img.decoding = "async"; }
       gallery.appendChild(img);
     });
 
@@ -392,11 +615,16 @@
 
       colors.innerHTML = "";
       sizes.innerHTML = "";
+      colors.setAttribute("role", "group");
+      colors.setAttribute("aria-label", "Colour");
+      sizes.setAttribute("role", "group");
+      sizes.setAttribute("aria-label", "Size");
 
       product.colors.forEach(color => {
         const btn = document.createElement("button");
         btn.className = "choice" + (color === selectedColor ? " selected" : "");
         btn.textContent = color;
+        btn.setAttribute("aria-pressed", color === selectedColor ? "true" : "false");
         btn.onclick = () => {
           selectedColor = color;
           renderChoices();
@@ -408,6 +636,7 @@
         const btn = document.createElement("button");
         btn.className = "choice" + (size === selectedSize ? " selected" : "");
         btn.textContent = size;
+        btn.setAttribute("aria-pressed", size === selectedSize ? "true" : "false");
         btn.onclick = () => {
           selectedSize = size;
           renderChoices();
@@ -425,38 +654,223 @@
 
     renderChoices();
 
+    // Related products — up to 4 other items, preferring the same category
+    const relatedGrid = document.getElementById("relatedGrid");
+    const others = Object.keys(PRODUCTS).filter(id => id !== productId);
+    others.sort((a, b) => {
+      const aSame = PRODUCTS[a].category === product.category ? 0 : 1;
+      const bSame = PRODUCTS[b].category === product.category ? 0 : 1;
+      return aSame - bSame;
+    });
+    others.slice(0, 4).forEach(id => {
+      const p = PRODUCTS[id];
+      const card = document.createElement("a");
+      card.className = "related-card";
+      card.href = "product.html?id=" + id;
+      card.setAttribute("aria-label", "View " + p.name);
+      card.innerHTML =
+        '<img src="' + p.images[0] + '" alt="' + p.name + '" loading="lazy" decoding="async">' +
+        '<div class="related-name">' + p.name + '</div>' +
+        '<div class="related-price">₹' + p.price.toLocaleString("en-IN") + '</div>';
+      relatedGrid.appendChild(card);
+    });
+    if (others.length === 0) document.getElementById("related").style.display = "none";
+
     function changeQty(amount) {
       quantity = Math.max(1, quantity + amount);
       document.getElementById("quantity").textContent = quantity;
     }
 
+    /* =========================================================
+       SHARED STORE (localStorage) — cart + wishlist
+       Kept in sync with index.html via the same storage keys.
+       ========================================================= */
+    const Store = {
+      CART_KEY: "ryanto_cart",
+      WISHLIST_KEY: "ryanto_wishlist",
+      getCart() {
+        try { return JSON.parse(localStorage.getItem(this.CART_KEY)) || []; }
+        catch (e) { return []; }
+      },
+      saveCart(cart) { localStorage.setItem(this.CART_KEY, JSON.stringify(cart)); },
+      getWishlist() {
+        try { return JSON.parse(localStorage.getItem(this.WISHLIST_KEY)) || []; }
+        catch (e) { return []; }
+      },
+      saveWishlist(list) { localStorage.setItem(this.WISHLIST_KEY, JSON.stringify(list)); }
+    };
+
+    let drawerMode = "cart";
+
+    function showToast(message) {
+      const container = document.getElementById("toastContainer");
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.textContent = message;
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 2600);
+    }
+
+    function updateBadges() {
+      const cart = Store.getCart();
+      const cartTotal = cart.reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById("cartCount").textContent = cartTotal;
+
+      const wishlist = Store.getWishlist();
+      const wishBadge = document.getElementById("wishlistCount");
+      if (wishlist.length > 0) {
+        wishBadge.hidden = false;
+        wishBadge.textContent = wishlist.length;
+      } else {
+        wishBadge.hidden = true;
+      }
+
+      const wishBtn = document.getElementById("wishlistBtn");
+      const inWishlist = wishlist.includes(productId);
+      wishBtn.textContent = inWishlist ? "♥ Added to wishlist" : "♡ Add to wishlist";
+      wishBtn.setAttribute("aria-pressed", inWishlist ? "true" : "false");
+    }
+
     function addToCart() {
-      alert(
-        product.name + "\\n" +
-        "Size: " + selectedSize + "\\n" +
-        "Colour: " + selectedColor + "\\n" +
-        "Quantity: " + quantity + "\\n\\n" +
-        "Added to cart."
-      );
+      const cart = Store.getCart();
+      const existing = cart.find(item => item.id === productId && item.size === selectedSize && item.color === selectedColor);
+      if (existing) { existing.qty += quantity; }
+      else {
+        cart.push({
+          id: productId, name: product.name, price: product.price,
+          image: product.images[0], qty: quantity, size: selectedSize, color: selectedColor
+        });
+      }
+      Store.saveCart(cart);
+      updateBadges();
+      showToast(product.name + " added to bag");
     }
 
     function toggleWishlist() {
-      const btn = document.querySelector(".wishlist");
-      if (btn.dataset.saved === "true") {
-        btn.textContent = "♡ Add to wishlist";
-        btn.dataset.saved = "false";
+      let wishlist = Store.getWishlist();
+      if (wishlist.includes(productId)) {
+        wishlist = wishlist.filter(id => id !== productId);
+        showToast("Removed from wishlist");
       } else {
-        btn.textContent = "♥ Added to wishlist";
-        btn.dataset.saved = "true";
+        wishlist.push(productId);
+        showToast("Added to wishlist");
+      }
+      Store.saveWishlist(wishlist);
+      updateBadges();
+    }
+
+    /* ---------- CART / WISHLIST DRAWER ---------- */
+    function openDrawer(mode) {
+      drawerMode = mode;
+      document.getElementById("drawerTitle").textContent = mode === "cart" ? "Your Bag" : "Your Wishlist";
+      document.getElementById("cartFooter").style.display = mode === "cart" ? "block" : "none";
+      renderDrawer();
+      document.getElementById("cartOverlay").classList.add("open");
+      document.getElementById("cartDrawer").classList.add("open");
+    }
+
+    function closeDrawer() {
+      document.getElementById("cartOverlay").classList.remove("open");
+      document.getElementById("cartDrawer").classList.remove("open");
+    }
+
+    function renderDrawer() {
+      const container = document.getElementById("drawerItems");
+      container.innerHTML = "";
+
+      if (drawerMode === "cart") {
+        const cart = Store.getCart();
+        if (cart.length === 0) {
+          container.innerHTML = '<div class="cart-empty"><span>🛍️</span>Your bag is empty.</div>';
+          document.getElementById("cartSubtotal").textContent = "₹0";
+          return;
+        }
+        let subtotal = 0;
+        cart.forEach((item, index) => {
+          subtotal += item.price * item.qty;
+          const row = document.createElement("div");
+          row.className = "cart-item";
+          row.innerHTML =
+            '<img src="' + item.image + '" alt="' + item.name + '">' +
+            '<div class="cart-item-info">' +
+              '<div class="cart-item-name">' + item.name + '</div>' +
+              '<div class="cart-item-meta">' +
+                (item.size ? "Size: " + item.size + " · " : "") +
+                (item.color ? "Colour: " + item.color + " · " : "") +
+                "Qty: " + item.qty +
+              '</div>' +
+              '<div class="cart-item-row">' +
+                '<span class="cart-item-price">₹' + (item.price * item.qty).toLocaleString("en-IN") + '</span>' +
+                '<button class="cart-item-remove" onclick="removeCartItem(' + index + ')">Remove</button>' +
+              '</div>' +
+            '</div>';
+          container.appendChild(row);
+        });
+        document.getElementById("cartSubtotal").textContent = "₹" + subtotal.toLocaleString("en-IN");
+      } else {
+        const wishlist = Store.getWishlist();
+        if (wishlist.length === 0) {
+          container.innerHTML = '<div class="cart-empty"><span>♡</span>Your wishlist is empty.</div>';
+          return;
+        }
+        wishlist.forEach(id => {
+          const p = PRODUCTS[id];
+          if (!p) return;
+          const row = document.createElement("div");
+          row.className = "cart-item";
+          row.innerHTML =
+            '<img src="' + p.images[0] + '" alt="' + p.name + '">' +
+            '<div class="cart-item-info">' +
+              '<div class="cart-item-name">' + p.name + '</div>' +
+              '<div class="cart-item-meta">₹' + p.price.toLocaleString("en-IN") + '</div>' +
+              '<div class="cart-item-row">' +
+                '<a class="cart-item-remove" style="text-decoration:none;" href="product.html?id=' + id + '">View</a>' +
+                '<button class="cart-item-remove" onclick="removeWishlistItem(\'' + id + '\')">Remove</button>' +
+              '</div>' +
+            '</div>';
+          container.appendChild(row);
+        });
       }
     }
-  
-    /*
-      [CHANGE WHATSAPP NUMBER]
-      Replace 919999999999 with the business WhatsApp number.
-      Country code + number only: no +, spaces or brackets.
-    */
-    const WHATSAPP_NUMBER = "917306880738";
+
+    function removeCartItem(index) {
+      const cart = Store.getCart();
+      cart.splice(index, 1);
+      Store.saveCart(cart);
+      updateBadges();
+      renderDrawer();
+    }
+
+    function removeWishlistItem(id) {
+      const wishlist = Store.getWishlist().filter(w => w !== id);
+      Store.saveWishlist(wishlist);
+      updateBadges();
+      renderDrawer();
+    }
+
+    function checkoutOnWhatsApp() {
+      const cart = Store.getCart();
+      if (cart.length === 0) { showToast("Your bag is empty"); return; }
+
+      let total = 0;
+      let lines = "Hello RYANTO!%0A%0AI want to order:%0A";
+      cart.forEach(item => {
+        total += item.price * item.qty;
+        lines += "• " + encodeURIComponent(item.name) +
+          (item.size ? " (Size " + item.size + ")" : "") +
+          (item.color ? " (" + item.color + ")" : "") +
+          " x" + item.qty + " — ₹" + (item.price * item.qty).toLocaleString("en-IN") + "%0A";
+      });
+      lines += "%0ATotal: ₹" + total.toLocaleString("en-IN") + "%0A%0APlease confirm availability and delivery details.";
+
+      window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + lines, "_blank");
+    }
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") closeDrawer();
+    });
+
+    updateBadges();
 
     function orderOnWhatsApp() {
       const total = product.price * quantity;
