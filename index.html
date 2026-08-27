@@ -4,6 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RYANTO — Fashion That Moves With You</title>
+  <meta name="description" content="RYANTO — modern, minimal fashion essentials for men and women. Shop new-season tees, shirts and dresses with fast delivery and easy 15-day returns.">
+  <meta name="theme-color" content="#090909">
+  <link rel="canonical" href="https://www.ryanto.example/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="RYANTO">
+  <meta property="og:title" content="RYANTO — Fashion That Moves With You">
+  <meta property="og:description" content="Modern, minimal fashion essentials for men and women. New season, fast delivery, easy returns.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=80">
+  <meta property="og:url" content="https://www.ryanto.example/">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="RYANTO — Fashion That Moves With You">
+  <meta name="twitter:description" content="Modern, minimal fashion essentials for men and women.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=80">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23090909'/%3E%3Ctext x='16' y='22' font-family='Arial,Helvetica,sans-serif' font-size='17' font-weight='800' fill='%23f4f3ef' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
 
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,6 +67,41 @@
     img {
       display: block;
       width: 100%;
+    }
+
+    :focus-visible {
+      outline: 2px solid #090909;
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 10px;
+      top: -60px;
+      background: #090909;
+      color: #fff;
+      padding: 12px 18px;
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 700;
+      z-index: 999;
+      transition: top .2s ease;
+    }
+
+    .skip-link:focus {
+      top: 10px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     /* ---------- TOP BAR ---------- */
@@ -550,7 +604,153 @@
     .product-price {
       font-size: 10px;
       color: #666;
+      margin-bottom: 10px;
     }
+
+    .product-link { display: block; color: inherit; text-decoration: none; }
+
+    .product-actions { display: flex; flex-direction: column; gap: 6px; }
+
+    .add-to-bag {
+      background: transparent;
+      color: #111;
+      border: 1px solid #111;
+      padding: 11px 14px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+
+    .add-to-bag:hover { background: #111; color: #fff; }
+
+    #men-products .add-to-bag,
+    #women-products .add-to-bag {
+      border-color: #fff;
+      color: #fff;
+    }
+
+    #men-products .add-to-bag:hover,
+    #women-products .add-to-bag:hover {
+      background: #fff;
+      color: #090909;
+    }
+
+    .heart[aria-pressed="true"] svg { fill: currentColor; }
+
+    /* ---------- NAV ACTION BADGES ---------- */
+    .nav-action { position: relative; }
+
+    .cart-badge {
+      position: absolute;
+      top: -6px;
+      right: -8px;
+      background: #090909;
+      color: #fff;
+      font-size: 8px;
+      font-weight: 700;
+      min-width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      padding: 0 2px;
+    }
+
+    /* ---------- TOAST ---------- */
+    .toast-container {
+      position: fixed;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 120;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .toast {
+      background: #090909;
+      color: #fff;
+      padding: 13px 22px;
+      font-size: 11px;
+      letter-spacing: .02em;
+      border-radius: 3px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.25);
+      animation: toastIn .25s ease, toastOut .3s ease 2.2s forwards;
+      white-space: nowrap;
+    }
+
+    @keyframes toastIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes toastOut { to { opacity: 0; transform: translateY(6px); } }
+
+    /* ---------- CART DRAWER ---------- */
+    .cart-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,.45);
+      z-index: 98; opacity: 0; pointer-events: none; transition: opacity .25s ease;
+    }
+
+    .cart-overlay.open { opacity: 1; pointer-events: auto; }
+
+    .cart-drawer {
+      position: fixed; top: 0; right: 0; height: 100%;
+      width: 400px; max-width: 92vw; background: #fdfdfc;
+      z-index: 99; transform: translateX(100%);
+      transition: transform .32s cubic-bezier(.4,0,.2,1);
+      display: flex; flex-direction: column;
+      box-shadow: -12px 0 40px rgba(0,0,0,.15);
+    }
+
+    .cart-drawer.open { transform: translateX(0); }
+
+    .cart-header {
+      padding: 22px 24px; display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cart-header h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; }
+
+    .cart-close {
+      background: none; border: 0; cursor: pointer; font-size: 22px; line-height: 1; color: #111;
+    }
+
+    .cart-items { flex: 1; overflow-y: auto; padding: 6px 24px; }
+
+    .cart-item {
+      display: grid; grid-template-columns: 60px 1fr; gap: 14px;
+      padding: 16px 0; border-bottom: 1px solid var(--border);
+    }
+
+    .cart-item img { width: 60px; height: 74px; object-fit: cover; }
+
+    .cart-item-name { font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
+    .cart-item-meta { font-size: 10px; color: #777; margin-bottom: 8px; }
+
+    .cart-item-row { display: flex; justify-content: space-between; align-items: center; }
+
+    .cart-item-remove {
+      font-size: 9px; text-transform: uppercase; font-weight: 700; letter-spacing: .04em;
+      background: none; border: 0; cursor: pointer; color: #777; text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .cart-item-price { font-size: 11px; font-weight: 700; }
+
+    .cart-empty { text-align: center; padding: 60px 10px; font-size: 12px; color: #777; }
+    .cart-empty span { display: block; font-size: 30px; margin-bottom: 14px; }
+
+    .cart-footer { padding: 20px 24px 24px; border-top: 1px solid var(--border); }
+
+    .cart-subtotal {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 14px;
+    }
+
+    .cart-checkout-note { font-size: 9px; color: #888; margin-top: 10px; text-align: center; }
 
     /* ---------- FOOTER ---------- */
     footer {
@@ -619,8 +819,10 @@
         font-size: 25px;
       }
 
-      .nav-right .nav-action span {
-        display: none;
+      .nav-right .nav-action span:not(.cart-badge) {
+        position: absolute;
+        width: 1px; height: 1px; padding: 0; margin: -1px;
+        overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
       }
 
       .nav-right {
@@ -737,6 +939,7 @@
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <!-- =========================================================
        BUSINESS CUSTOMIZATION GUIDE
        Search this file for these labels to quickly customize:
@@ -764,7 +967,7 @@
   <!-- HEADER -->
   <header>
     <nav class="nav">
-      <button class="mobile-menu" aria-label="Open menu" onclick="toggleMenu()">
+      <button class="mobile-menu" aria-label="Open menu" aria-expanded="false" aria-controls="desktopNav" onclick="toggleMenu()">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor">
           <path d="M3 6h18M3 12h18M3 18h18"/>
         </svg>
@@ -780,48 +983,52 @@
       <a href="#" class="logo">RYANTO</a>
 
       <div class="nav-right">
-        <a class="nav-action" href="#products">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <a class="nav-action" href="#products" aria-label="Search products">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
             <circle cx="11" cy="11" r="7"></circle>
             <path d="m20 20-4-4"></path>
           </svg>
           <span>Search</span>
         </a>
 
-        <a class="nav-action" href="#">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <a class="nav-action" href="#" aria-label="Account login">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
             <circle cx="12" cy="8" r="4"></circle>
             <path d="M4 21c.7-4 3.2-6 8-6s7.3 2 8 6"></path>
           </svg>
           <span>Login</span>
         </a>
 
-        <button class="nav-action" style="background:none;border:0;cursor:pointer;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <button class="nav-action" style="background:none;border:0;cursor:pointer;" aria-label="View wishlist" onclick="openDrawer('wishlist')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
             <path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"></path>
           </svg>
           <span>Wishlist</span>
+          <span class="cart-badge" id="wishlistCount" hidden>0</span>
         </button>
 
-        <button class="nav-action" style="background:none;border:0;cursor:pointer;" onclick="openCart()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <button class="nav-action" style="background:none;border:0;cursor:pointer;" aria-label="Open shopping cart" onclick="openCart()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
             <path d="M5 8h14l-1 12H6L5 8Z"></path>
             <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
           </svg>
-          <span>Cart (<b id="cartCount">0</b>)</span>
+          <span>Cart</span>
+          <span class="cart-badge" id="cartCount" aria-live="polite">0</span>
         </button>
       </div>
     </nav>
   </header>
 
   <!-- HERO -->
-  <main>
+  <main id="main">
     <section class="hero">
       <!-- Replace this image URL with your own hero image -->
       <img
         class="hero-image"
         src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1800&q=85"
-        alt="Fashion model"
+        alt="Fashion model wearing RYANTO's new season collection"
+        fetchpriority="high"
+        decoding="async"
       />
 
       <div class="hero-word">RYANTO</div>
@@ -846,7 +1053,7 @@
     <!-- CATEGORIES -->
     <section class="categories">
       <div class="category" id="men">
-        <img src="https://images.unsplash.com/photo-1506629905607-d9e29b7f9c08?auto=format&fit=crop&w=500&q=80" alt="Men">
+        <img src="https://images.unsplash.com/photo-1506629905607-d9e29b7f9c08?auto=format&fit=crop&w=500&q=80" alt="Men" loading="lazy" decoding="async">
         <div>
           <h3>Men</h3>
           <p>Elevated everyday essentials.</p>
@@ -855,7 +1062,7 @@
       </div>
 
       <div class="category" id="women">
-        <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=500&q=80" alt="Women">
+        <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=500&q=80" alt="Women" loading="lazy" decoding="async">
         <div>
           <h3>Women</h3>
           <p>Effortless style for every you.</p>
@@ -864,7 +1071,7 @@
       </div>
 
       <div class="category" id="kids">
-        <img src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=500&q=80" alt="Kids">
+        <img src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=500&q=80" alt="Kids" loading="lazy" decoding="async">
         <div>
           <h3>Kids</h3>
           <p>Comfort meets cool everyday.</p>
@@ -888,6 +1095,8 @@
         class="season-image"
         src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1400&q=85"
         alt="New season fashion"
+        loading="lazy"
+        decoding="async"
       >
     </section>
 
@@ -943,38 +1152,78 @@
     <section class="products-section" id="men-products">
       <div class="section-heading"><div><div class="eyebrow">For Him</div><h2>Men's Collection</h2></div><a href="#men-products" class="view-all">View All</a></div>
       <div class="products">
-        <article class="product" onclick="window.location.href='product.html?id=classic-black-tee'">
+        <article class="product" data-id="classic-black-tee">
           <div class="product-image">
-            <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)" aria-label="Add to wishlist">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>
+            <a class="product-link" href="product.html?id=classic-black-tee" aria-label="View Classic Black Tee">
+              <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=85" alt="Classic Black Tee" loading="lazy" decoding="async">
+            </a>
+            <button class="heart" data-id="classic-black-tee" onclick="toggleHeart(this)" aria-label="Add Classic Black Tee to wishlist" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>
             </button>
-            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=85" alt="Classic Black Tee">
           </div>
-          <div class="product-info"><div class="product-name">Classic Black Tee</div><div class="product-price">₹1,299</div><button class="whatsapp-order" onclick="event.stopPropagation(); quickWhatsAppOrder(this)" data-price="1,299" style="margin-top:10px;width:100%;">Order on WhatsApp</button></div></article>
-        <article class="product" onclick="window.location.href='product.html?id=oversized-essential-tee'">
+          <div class="product-info">
+            <a class="product-link" href="product.html?id=classic-black-tee"><div class="product-name">Classic Black Tee</div></a>
+            <div class="product-price">₹1,299</div>
+            <div class="product-actions">
+              <button class="add-to-bag" data-id="classic-black-tee" onclick="quickAddToCart(this)">Add to Bag</button>
+              <button class="whatsapp-order" data-id="classic-black-tee" data-price="1,299" onclick="quickWhatsAppOrder(this)">Order on WhatsApp</button>
+            </div>
+          </div>
+        </article>
+        <article class="product" data-id="oversized-essential-tee">
           <div class="product-image">
-            <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)" aria-label="Add to wishlist">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>
+            <a class="product-link" href="product.html?id=oversized-essential-tee" aria-label="View Oversized Essential Tee">
+              <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=800&q=85" alt="Oversized Essential Tee" loading="lazy" decoding="async">
+            </a>
+            <button class="heart" data-id="oversized-essential-tee" onclick="toggleHeart(this)" aria-label="Add Oversized Essential Tee to wishlist" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>
             </button>
-            <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=800&q=85" alt="Oversized Essential Tee">
           </div>
-          <div class="product-info"><div class="product-name">Oversized Essential Tee</div><div class="product-price">₹1,499</div><button class="whatsapp-order" onclick="event.stopPropagation(); quickWhatsAppOrder(this)" data-price="1,499" style="margin-top:10px;width:100%;">Order on WhatsApp</button></div></article>
-        <article class="product" onclick="window.location.href='product.html?id=relaxed-graphic-tee'">
+          <div class="product-info">
+            <a class="product-link" href="product.html?id=oversized-essential-tee"><div class="product-name">Oversized Essential Tee</div></a>
+            <div class="product-price">₹1,499</div>
+            <div class="product-actions">
+              <button class="add-to-bag" data-id="oversized-essential-tee" onclick="quickAddToCart(this)">Add to Bag</button>
+              <button class="whatsapp-order" data-id="oversized-essential-tee" data-price="1,499" onclick="quickWhatsAppOrder(this)">Order on WhatsApp</button>
+            </div>
+          </div>
+        </article>
+        <article class="product" data-id="relaxed-graphic-tee">
           <div class="product-image">
-            <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)" aria-label="Add to wishlist">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>
+            <a class="product-link" href="product.html?id=relaxed-graphic-tee" aria-label="View Relaxed Graphic Tee">
+              <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=800&q=85" alt="Relaxed Graphic Tee" loading="lazy" decoding="async">
+            </a>
+            <button class="heart" data-id="relaxed-graphic-tee" onclick="toggleHeart(this)" aria-label="Add Relaxed Graphic Tee to wishlist" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>
             </button>
-            <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=800&q=85" alt="Relaxed Graphic Tee">
           </div>
-          <div class="product-info"><div class="product-name">Relaxed Graphic Tee</div><div class="product-price">₹1,799</div><button class="whatsapp-order" onclick="event.stopPropagation(); quickWhatsAppOrder(this)" data-price="1,799" style="margin-top:10px;width:100%;">Order on WhatsApp</button></div></article>
-        <article class="product" onclick="window.location.href='product.html?id=minimal-cotton-shirt'">
+          <div class="product-info">
+            <a class="product-link" href="product.html?id=relaxed-graphic-tee"><div class="product-name">Relaxed Graphic Tee</div></a>
+            <div class="product-price">₹1,799</div>
+            <div class="product-actions">
+              <button class="add-to-bag" data-id="relaxed-graphic-tee" onclick="quickAddToCart(this)">Add to Bag</button>
+              <button class="whatsapp-order" data-id="relaxed-graphic-tee" data-price="1,799" onclick="quickWhatsAppOrder(this)">Order on WhatsApp</button>
+            </div>
+          </div>
+        </article>
+        <article class="product" data-id="minimal-cotton-shirt">
           <div class="product-image">
-            <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)" aria-label="Add to wishlist">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>
+            <a class="product-link" href="product.html?id=minimal-cotton-shirt" aria-label="View Minimal Cotton Shirt">
+              <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=800&q=85" alt="Minimal Cotton Shirt" loading="lazy" decoding="async">
+            </a>
+            <button class="heart" data-id="minimal-cotton-shirt" onclick="toggleHeart(this)" aria-label="Add Minimal Cotton Shirt to wishlist" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>
             </button>
-            <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=800&q=85" alt="Minimal Cotton Shirt">
           </div>
-          <div class="product-info"><div class="product-name">Minimal Cotton Shirt</div><div class="product-price">₹2,499</div><button class="whatsapp-order" onclick="event.stopPropagation(); quickWhatsAppOrder(this)" data-price="2,499" style="margin-top:10px;width:100%;">Order on WhatsApp</button></div></article>
+          <div class="product-info">
+            <a class="product-link" href="product.html?id=minimal-cotton-shirt"><div class="product-name">Minimal Cotton Shirt</div></a>
+            <div class="product-price">₹2,499</div>
+            <div class="product-actions">
+              <button class="add-to-bag" data-id="minimal-cotton-shirt" onclick="quickAddToCart(this)">Add to Bag</button>
+              <button class="whatsapp-order" data-id="minimal-cotton-shirt" data-price="2,499" onclick="quickWhatsAppOrder(this)">Order on WhatsApp</button>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -982,40 +1231,81 @@
     <section class="products-section" id="women-products">
       <div class="section-heading"><div><div class="eyebrow">For Her</div><h2>Women's Collection</h2></div><a href="#women-products" class="view-all">View All</a></div>
       <div class="products">
-        <article class="product" onclick="window.location.href='product.html?id=women-relaxed-top'">
+        <article class="product" data-id="women-relaxed-top">
           <div class="product-image">
-            <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)" aria-label="Add to wishlist">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>
+            <a class="product-link" href="product.html?id=women-relaxed-top" aria-label="View Women's Relaxed Top">
+              <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=800&q=85" alt="Women's Relaxed Top" loading="lazy" decoding="async">
+            </a>
+            <button class="heart" data-id="women-relaxed-top" onclick="toggleHeart(this)" aria-label="Add Women's Relaxed Top to wishlist" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>
             </button>
-            <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=800&q=85" alt="Women's Relaxed Top">
           </div>
-          <div class="product-info"><div class="product-name">Women's Relaxed Top</div><div class="product-price">₹1,599</div><button class="whatsapp-order" onclick="event.stopPropagation(); quickWhatsAppOrder(this)" data-price="1,599" style="margin-top:10px;width:100%;">Order on WhatsApp</button></div></article>
-        <article class="product" onclick="window.location.href='product.html?id=women-minimal-dress'">
+          <div class="product-info">
+            <a class="product-link" href="product.html?id=women-relaxed-top"><div class="product-name">Women's Relaxed Top</div></a>
+            <div class="product-price">₹1,599</div>
+            <div class="product-actions">
+              <button class="add-to-bag" data-id="women-relaxed-top" onclick="quickAddToCart(this)">Add to Bag</button>
+              <button class="whatsapp-order" data-id="women-relaxed-top" data-price="1,599" onclick="quickWhatsAppOrder(this)">Order on WhatsApp</button>
+            </div>
+          </div>
+        </article>
+        <article class="product" data-id="women-minimal-dress">
           <div class="product-image">
-            <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)" aria-label="Add to wishlist">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>
+            <a class="product-link" href="product.html?id=women-minimal-dress" aria-label="View Minimal Everyday Dress">
+              <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=800&q=85" alt="Minimal Everyday Dress" loading="lazy" decoding="async">
+            </a>
+            <button class="heart" data-id="women-minimal-dress" onclick="toggleHeart(this)" aria-label="Add Minimal Everyday Dress to wishlist" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>
             </button>
-            <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=800&q=85" alt="Minimal Everyday Dress">
           </div>
-          <div class="product-info"><div class="product-name">Minimal Everyday Dress</div><div class="product-price">₹2,299</div><button class="whatsapp-order" onclick="event.stopPropagation(); quickWhatsAppOrder(this)" data-price="2,299" style="margin-top:10px;width:100%;">Order on WhatsApp</button></div></article>
-        <article class="product" onclick="window.location.href='product.html?id=women-oversized-shirt'">
+          <div class="product-info">
+            <a class="product-link" href="product.html?id=women-minimal-dress"><div class="product-name">Minimal Everyday Dress</div></a>
+            <div class="product-price">₹2,299</div>
+            <div class="product-actions">
+              <button class="add-to-bag" data-id="women-minimal-dress" onclick="quickAddToCart(this)">Add to Bag</button>
+              <button class="whatsapp-order" data-id="women-minimal-dress" data-price="2,299" onclick="quickWhatsAppOrder(this)">Order on WhatsApp</button>
+            </div>
+          </div>
+        </article>
+        <article class="product" data-id="women-oversized-shirt">
           <div class="product-image">
-            <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)" aria-label="Add to wishlist">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>
+            <a class="product-link" href="product.html?id=women-oversized-shirt" aria-label="View Oversized Cotton Shirt">
+              <img src="https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=800&q=85" alt="Oversized Cotton Shirt" loading="lazy" decoding="async">
+            </a>
+            <button class="heart" data-id="women-oversized-shirt" onclick="toggleHeart(this)" aria-label="Add Oversized Cotton Shirt to wishlist" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>
             </button>
-            <img src="https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=800&q=85" alt="Oversized Cotton Shirt">
           </div>
-          <div class="product-info"><div class="product-name">Oversized Cotton Shirt</div><div class="product-price">₹2,099</div><button class="whatsapp-order" onclick="event.stopPropagation(); quickWhatsAppOrder(this)" data-price="2,099" style="margin-top:10px;width:100%;">Order on WhatsApp</button></div></article>
-        <article class="product" onclick="window.location.href='product.html?id=women-casual-tee'">
+          <div class="product-info">
+            <a class="product-link" href="product.html?id=women-oversized-shirt"><div class="product-name">Oversized Cotton Shirt</div></a>
+            <div class="product-price">₹2,099</div>
+            <div class="product-actions">
+              <button class="add-to-bag" data-id="women-oversized-shirt" onclick="quickAddToCart(this)">Add to Bag</button>
+              <button class="whatsapp-order" data-id="women-oversized-shirt" data-price="2,099" onclick="quickWhatsAppOrder(this)">Order on WhatsApp</button>
+            </div>
+          </div>
+        </article>
+        <article class="product" data-id="women-casual-tee">
           <div class="product-image">
-            <button class="heart" onclick="event.stopPropagation(); toggleHeart(this)" aria-label="Add to wishlist">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>
+            <a class="product-link" href="product.html?id=women-casual-tee" aria-label="View Essential Women's Tee">
+              <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=800&q=85" alt="Essential Women's Tee" loading="lazy" decoding="async">
+            </a>
+            <button class="heart" data-id="women-casual-tee" onclick="toggleHeart(this)" aria-label="Add Essential Women's Tee to wishlist" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.8 8.7c0 5.4-8.8 10.1-8.8 10.1S3.2 14.1 3.2 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.6Z"/></svg>
             </button>
-            <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=800&q=85" alt="Essential Women's Tee">
           </div>
-          <div class="product-info"><div class="product-name">Essential Women's Tee</div><div class="product-price">₹1,399</div><button class="whatsapp-order" onclick="event.stopPropagation(); quickWhatsAppOrder(this)" data-price="1,399" style="margin-top:10px;width:100%;">Order on WhatsApp</button></div></article>
+          <div class="product-info">
+            <a class="product-link" href="product.html?id=women-casual-tee"><div class="product-name">Essential Women's Tee</div></a>
+            <div class="product-price">₹1,399</div>
+            <div class="product-actions">
+              <button class="add-to-bag" data-id="women-casual-tee" onclick="quickAddToCart(this)">Add to Bag</button>
+              <button class="whatsapp-order" data-id="women-casual-tee" data-price="1,399" onclick="quickWhatsAppOrder(this)">Order on WhatsApp</button>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
+  </main>
 
   <!-- FOOTER -->
   <footer>
@@ -1056,67 +1346,231 @@
     </div>
   </footer>
 
-  <script>
-    let cartCount = 0;
+  <!-- CART DRAWER (also used for Wishlist view) -->
+  <div class="cart-overlay" id="cartOverlay" onclick="closeDrawer()"></div>
+  <div class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+    <div class="cart-header">
+      <h2 id="drawerTitle">Your Bag</h2>
+      <button class="cart-close" onclick="closeDrawer()" aria-label="Close">&times;</button>
+    </div>
+    <div class="cart-items" id="drawerItems"></div>
+    <div class="cart-footer" id="cartFooter">
+      <div class="cart-subtotal"><span>Subtotal</span><span id="cartSubtotal">₹0</span></div>
+      <button class="btn" style="width:100%;" onclick="checkoutOnWhatsApp()">Checkout on WhatsApp</button>
+      <p class="cart-checkout-note">Taxes and delivery calculated at confirmation.</p>
+    </div>
+  </div>
 
-    function addToCart(productName) {
-      cartCount++;
-      document.getElementById("cartCount").textContent = cartCount;
-      alert(productName + " added to cart.");
+  <!-- TOASTS -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <script>
+    /* =========================================================
+       SHARED STORE (localStorage) — cart + wishlist
+       Kept in sync with product.html via the same storage keys.
+       ========================================================= */
+    const WHATSAPP_NUMBER = "917306880738";
+
+    const Store = {
+      CART_KEY: "ryanto_cart",
+      WISHLIST_KEY: "ryanto_wishlist",
+      getCart() {
+        try { return JSON.parse(localStorage.getItem(this.CART_KEY)) || []; }
+        catch (e) { return []; }
+      },
+      saveCart(cart) { localStorage.setItem(this.CART_KEY, JSON.stringify(cart)); },
+      getWishlist() {
+        try { return JSON.parse(localStorage.getItem(this.WISHLIST_KEY)) || []; }
+        catch (e) { return []; }
+      },
+      saveWishlist(list) { localStorage.setItem(this.WISHLIST_KEY, JSON.stringify(list)); }
+    };
+
+    let drawerMode = "cart";
+
+    function showToast(message) {
+      const container = document.getElementById("toastContainer");
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.textContent = message;
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 2600);
     }
 
-    function openCart() {
-      alert(
-        cartCount === 0
-          ? "Your cart is empty."
-          : "You have " + cartCount + " item(s) in your cart."
-      );
+    function updateBadges() {
+      const cart = Store.getCart();
+      const cartTotal = cart.reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById("cartCount").textContent = cartTotal;
+
+      const wishlist = Store.getWishlist();
+      const wishBadge = document.getElementById("wishlistCount");
+      if (wishlist.length > 0) {
+        wishBadge.hidden = false;
+        wishBadge.textContent = wishlist.length;
+      } else {
+        wishBadge.hidden = true;
+      }
+
+      document.querySelectorAll(".heart[data-id]").forEach(btn => {
+        const active = wishlist.includes(btn.dataset.id);
+        btn.setAttribute("aria-pressed", active ? "true" : "false");
+        btn.querySelector("svg").setAttribute("fill", active ? "currentColor" : "none");
+      });
+    }
+
+    function readProductCard(id) {
+      const card = document.querySelector('.product[data-id="' + id + '"]');
+      if (!card) return null;
+      return {
+        id,
+        name: card.querySelector(".product-name").textContent.trim(),
+        price: parseInt(card.querySelector(".whatsapp-order").dataset.price.replace(/,/g, ""), 10),
+        image: card.querySelector("img").getAttribute("src")
+      };
+    }
+
+    function quickAddToCart(button) {
+      const id = button.dataset.id;
+      const product = readProductCard(id);
+      if (!product) return;
+
+      const cart = Store.getCart();
+      const existing = cart.find(item => item.id === id && !item.size && !item.color);
+      if (existing) { existing.qty += 1; }
+      else { cart.push({ id, name: product.name, price: product.price, image: product.image, qty: 1, size: "", color: "" }); }
+
+      Store.saveCart(cart);
+      updateBadges();
+      showToast(product.name + " added to bag");
     }
 
     function toggleHeart(button) {
-      const svg = button.querySelector("svg");
-      const active = button.dataset.active === "true";
+      const id = button.dataset.id;
+      let wishlist = Store.getWishlist();
+      const active = wishlist.includes(id);
 
       if (active) {
-        svg.setAttribute("fill", "none");
-        button.dataset.active = "false";
+        wishlist = wishlist.filter(w => w !== id);
+        showToast("Removed from wishlist");
       } else {
-        svg.setAttribute("fill", "currentColor");
-        button.dataset.active = "true";
+        wishlist.push(id);
+        showToast("Added to wishlist");
+      }
+
+      Store.saveWishlist(wishlist);
+      updateBadges();
+    }
+
+    /* ---------- CART / WISHLIST DRAWER ---------- */
+    function openCartDrawer() { openDrawer("cart"); }
+
+    function openDrawer(mode) {
+      drawerMode = mode;
+      document.getElementById("drawerTitle").textContent = mode === "cart" ? "Your Bag" : "Your Wishlist";
+      document.getElementById("cartFooter").style.display = mode === "cart" ? "block" : "none";
+      renderDrawer();
+      document.getElementById("cartOverlay").classList.add("open");
+      document.getElementById("cartDrawer").classList.add("open");
+    }
+
+    function closeDrawer() {
+      document.getElementById("cartOverlay").classList.remove("open");
+      document.getElementById("cartDrawer").classList.remove("open");
+    }
+
+    function openCart() { openDrawer("cart"); }
+
+    function renderDrawer() {
+      const container = document.getElementById("drawerItems");
+      container.innerHTML = "";
+
+      if (drawerMode === "cart") {
+        const cart = Store.getCart();
+        if (cart.length === 0) {
+          container.innerHTML = '<div class="cart-empty"><span>🛍️</span>Your bag is empty.</div>';
+          document.getElementById("cartSubtotal").textContent = "₹0";
+          return;
+        }
+        let subtotal = 0;
+        cart.forEach((item, index) => {
+          subtotal += item.price * item.qty;
+          const row = document.createElement("div");
+          row.className = "cart-item";
+          row.innerHTML =
+            '<img src="' + item.image + '" alt="' + item.name + '">' +
+            '<div class="cart-item-info">' +
+              '<div class="cart-item-name">' + item.name + '</div>' +
+              '<div class="cart-item-meta">' +
+                (item.size ? "Size: " + item.size + " · " : "") +
+                (item.color ? "Colour: " + item.color + " · " : "") +
+                "Qty: " + item.qty +
+              '</div>' +
+              '<div class="cart-item-row">' +
+                '<span class="cart-item-price">₹' + (item.price * item.qty).toLocaleString("en-IN") + '</span>' +
+                '<button class="cart-item-remove" onclick="removeCartItem(' + index + ')">Remove</button>' +
+              '</div>' +
+            '</div>';
+          container.appendChild(row);
+        });
+        document.getElementById("cartSubtotal").textContent = "₹" + subtotal.toLocaleString("en-IN");
+      } else {
+        const wishlist = Store.getWishlist();
+        if (wishlist.length === 0) {
+          container.innerHTML = '<div class="cart-empty"><span>♡</span>Your wishlist is empty.</div>';
+          return;
+        }
+        wishlist.forEach(id => {
+          const product = readProductCard(id);
+          if (!product) return;
+          const row = document.createElement("div");
+          row.className = "cart-item";
+          row.innerHTML =
+            '<img src="' + product.image + '" alt="' + product.name + '">' +
+            '<div class="cart-item-info">' +
+              '<div class="cart-item-name">' + product.name + '</div>' +
+              '<div class="cart-item-meta">₹' + product.price.toLocaleString("en-IN") + '</div>' +
+              '<div class="cart-item-row">' +
+                '<a class="cart-item-remove" style="text-decoration:none;" href="product.html?id=' + id + '">View</a>' +
+                '<button class="cart-item-remove" onclick="removeWishlistItem(\'' + id + '\')">Remove</button>' +
+              '</div>' +
+            '</div>';
+          container.appendChild(row);
+        });
       }
     }
 
-    function toggleMenu() {
-      const nav = document.getElementById("desktopNav");
-
-      if (nav.style.display === "flex") {
-        nav.style.display = "";
-      } else {
-        nav.style.display = "flex";
-        nav.style.position = "absolute";
-        nav.style.top = "65px";
-        nav.style.left = "0";
-        nav.style.right = "0";
-        nav.style.background = "#f4f3ef";
-        nav.style.padding = "20px 6%";
-        nav.style.flexDirection = "column";
-        nav.style.alignItems = "flex-start";
-        nav.style.zIndex = "30";
-      }
+    function removeCartItem(index) {
+      const cart = Store.getCart();
+      cart.splice(index, 1);
+      Store.saveCart(cart);
+      updateBadges();
+      renderDrawer();
     }
-  
-    /*
-      ==========================================================
-      WHATSAPP ORDERING
-      [CHANGE WHATSAPP NUMBER]
-      Replace 919999999999 with the business WhatsApp number.
-      Use country code + number WITHOUT +, spaces, or brackets.
 
-      Example Kerala/India:
-      919876543210
-      ==========================================================
-    */
-    const WHATSAPP_NUMBER = "917306880738";
+    function removeWishlistItem(id) {
+      const wishlist = Store.getWishlist().filter(w => w !== id);
+      Store.saveWishlist(wishlist);
+      updateBadges();
+      renderDrawer();
+    }
+
+    function checkoutOnWhatsApp() {
+      const cart = Store.getCart();
+      if (cart.length === 0) { showToast("Your bag is empty"); return; }
+
+      let total = 0;
+      let lines = "Hello RYANTO!%0A%0AI want to order:%0A";
+      cart.forEach(item => {
+        total += item.price * item.qty;
+        lines += "• " + encodeURIComponent(item.name) +
+          (item.size ? " (Size " + item.size + ")" : "") +
+          (item.color ? " (" + item.color + ")" : "") +
+          " x" + item.qty + " — ₹" + (item.price * item.qty).toLocaleString("en-IN") + "%0A";
+      });
+      lines += "%0ATotal: ₹" + total.toLocaleString("en-IN") + "%0A%0APlease confirm availability and delivery details.";
+
+      window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + lines, "_blank");
+    }
 
     function quickWhatsAppOrder(button) {
       const card = button.closest(".product");
@@ -1134,6 +1588,33 @@
       window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + message, "_blank");
     }
 
+    document.addEventListener("DOMContentLoaded", updateBadges);
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") closeDrawer();
+    });
+
+    function toggleMenu() {
+      const nav = document.getElementById("desktopNav");
+      const btn = document.querySelector(".mobile-menu");
+
+      if (nav.style.display === "flex") {
+        nav.style.display = "";
+        btn.setAttribute("aria-expanded", "false");
+      } else {
+        nav.style.display = "flex";
+        nav.style.position = "absolute";
+        nav.style.top = "65px";
+        nav.style.left = "0";
+        nav.style.right = "0";
+        nav.style.background = "#f4f3ef";
+        nav.style.padding = "20px 6%";
+        nav.style.flexDirection = "column";
+        nav.style.alignItems = "flex-start";
+        nav.style.zIndex = "30";
+        btn.setAttribute("aria-expanded", "true");
+      }
+    }
   </script>
 
 </body>
