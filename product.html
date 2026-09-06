@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    (function () {
+      var saved = localStorage.getItem("ryanto_theme");
+      var theme = saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      if (theme === "dark") document.documentElement.setAttribute("data-theme", "dark");
+    })();
+  </script>
   <meta charset="UTF-8">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title id="pageTitle">Product | RYANTO</title>
   <meta name="description" id="pageDescription" content="Shop modern, minimal fashion essentials at RYANTO.">
@@ -24,6 +32,44 @@
       --muted:#737373;
       --border:#d7d6d1;
       --max:1440px;
+      --surface:#fff;
+      --surface-2:#ddd;
+      --drawer-bg:#fdfdfc;
+      color-scheme: light;
+    }
+    [data-theme="dark"] {
+      --black:#f4f3ef;
+      --white:#121212;
+      --muted:#a3a3a3;
+      --border:#2e2e2e;
+      --surface:#1a1a1a;
+      --surface-2:#2a2a2a;
+      --drawer-bg:#1a1a1a;
+      color-scheme: dark;
+    }
+    .theme-toggle {
+      background:none; border:1px solid var(--border); border-radius:50%;
+      width:32px; height:32px; display:grid; place-items:center; cursor:pointer;
+      color:var(--black); flex:0 0 auto;
+    }
+    .theme-toggle svg { width:16px; height:16px; }
+    .theme-toggle .icon-moon { display:none; }
+    [data-theme="dark"] .theme-toggle .icon-sun { display:none; }
+    [data-theme="dark"] .theme-toggle .icon-moon { display:block; }
+    .back-to-top {
+      position:fixed; bottom:24px; right:24px; z-index:90;
+      width:44px; height:44px; border-radius:50%; border:0;
+      background:var(--black); color:var(--white); cursor:pointer;
+      display:grid; place-items:center; box-shadow:0 6px 18px rgba(0,0,0,.25);
+      opacity:0; pointer-events:none; transform:translateY(10px);
+      transition:opacity .25s ease, transform .25s ease;
+    }
+    .back-to-top.visible { opacity:1; pointer-events:auto; transform:translateY(0); }
+    .back-to-top svg { width:18px; height:18px; }
+    @media print {
+      .topbar, header, .cart-overlay, .cart-drawer, .toast-container,
+      .back-to-top, .skip-link, .wishlist, .add, .whatsapp-product { display:none !important; }
+      body { background:#fff; color:#000; }
     }
     * { box-sizing:border-box; margin:0; padding:0; }
     body { font-family:Inter,Arial,sans-serif; background:var(--white); color:var(--black); }
@@ -76,7 +122,7 @@
     }
     .gallery { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
     .gallery img {
-      aspect-ratio:.8; object-fit:cover; background:#ddd;
+      aspect-ratio:.8; object-fit:cover; background:var(--surface-2);
     }
     .gallery img:first-child { grid-column:1 / -1; aspect-ratio:1.05; }
     .details { position:sticky; top:30px; }
@@ -185,7 +231,7 @@
     .cart-overlay.open { opacity:1; pointer-events:auto; }
     .cart-drawer {
       position:fixed; top:0; right:0; height:100%; width:400px; max-width:92vw;
-      background:#fdfdfc; z-index:99; transform:translateX(100%);
+      background:var(--drawer-bg); z-index:99; transform:translateX(100%);
       transition:transform .32s cubic-bezier(.4,0,.2,1); display:flex; flex-direction:column;
       box-shadow:-12px 0 40px rgba(0,0,0,.15);
     }
@@ -216,7 +262,7 @@
     .related h2 { font-size:16px; text-transform:uppercase; letter-spacing:.05em; margin-bottom:20px; }
     .related-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
     .related-card { cursor:pointer; }
-    .related-card img { aspect-ratio:.8; object-fit:cover; background:#ddd; margin-bottom:10px; }
+    .related-card img { aspect-ratio:.8; object-fit:cover; background:var(--surface-2); margin-bottom:10px; }
     .related-name { font-size:11px; font-weight:600; text-transform:uppercase; margin-bottom:4px; }
     .related-price { font-size:10px; color:#666; }
     @media(max-width:800px) { .related-grid { grid-template-columns:repeat(2,1fr); } }
@@ -294,6 +340,15 @@
           </svg><span>Cart</span>
           <span class="cart-badge" id="cartCount" aria-live="polite">0</span>
         </button>
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"></path>
+          </svg>
+        </button>
       </div>
     </nav>
   </header>
@@ -363,7 +418,11 @@
     <div class="related-grid" id="relatedGrid"></div>
   </section>
 
-  <footer>© 2026 RYANTO — Fashion That Moves With You.</footer>
+  <footer id="copyrightLine">© 2026 RYANTO — Fashion That Moves With You.</footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"></path></svg>
+  </button>
 
   <!-- CART / WISHLIST DRAWER -->
   <div class="cart-overlay" id="cartOverlay" onclick="closeDrawer()"></div>
@@ -868,6 +927,25 @@
 
     document.addEventListener("keydown", e => {
       if (e.key === "Escape") closeDrawer();
+    });
+
+    function toggleTheme() {
+      const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+      if (isDark) {
+        document.documentElement.removeAttribute("data-theme");
+        localStorage.setItem("ryanto_theme", "light");
+      } else {
+        document.documentElement.setAttribute("data-theme", "dark");
+        localStorage.setItem("ryanto_theme", "dark");
+      }
+    }
+
+    document.getElementById("copyrightLine").textContent =
+      "© " + new Date().getFullYear() + " RYANTO — Fashion That Moves With You.";
+
+    const backToTop = document.getElementById("backToTop");
+    window.addEventListener("scroll", () => {
+      backToTop.classList.toggle("visible", window.scrollY > 600);
     });
 
     updateBadges();
