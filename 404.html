@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    (function () {
+      var saved = localStorage.getItem("ryanto_theme");
+      var theme = saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      if (theme === "dark") document.documentElement.setAttribute("data-theme", "dark");
+    })();
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found | RYANTO</title>
+  <meta name="description" content="The page you're looking for doesn't exist. Return to RYANTO to keep shopping.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#090909">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23090909'/%3E%3Ctext x='16' y='22' font-family='Arial,Helvetica,sans-serif' font-size='17' font-weight='800' fill='%23f4f3ef' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --black: #090909;
+      --white: #f4f3ef;
+      --border: #d7d6d1;
+      color-scheme: light;
+    }
+    [data-theme="dark"] {
+      --black: #f4f3ef;
+      --white: #121212;
+      --border: #2e2e2e;
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Inter", Arial, sans-serif;
+      background: var(--white);
+      color: var(--black);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 6%;
+    }
+    :focus-visible { outline: 2px solid var(--black); outline-offset: 3px; }
+    .code {
+      font-size: clamp(70px, 14vw, 140px);
+      font-weight: 800;
+      letter-spacing: -.04em;
+      line-height: 1;
+    }
+    h1 {
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin: 18px 0 10px;
+    }
+    p {
+      color: var(--muted, #767676);
+      font-size: 13px;
+      max-width: 380px;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+    .actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+    .btn {
+      border: 0;
+      background: var(--black);
+      color: var(--white);
+      padding: 14px 26px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      color: var(--black);
+      border: 1px solid var(--black);
+    }
+    .logo { font-size: 24px; font-weight: 800; letter-spacing: .02em; margin-bottom: 40px; }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="logo">RYANTO</a>
+  <div class="code">404</div>
+  <h1>Page not found</h1>
+  <p>The page you're looking for may have been moved or no longer exists. Let's get you back to shopping.</p>
+  <div class="actions">
+    <a class="btn" href="index.html">Back to Home</a>
+    <a class="btn btn-outline" href="index.html#products">Shop Products</a>
+  </div>
+</body>
+</html>

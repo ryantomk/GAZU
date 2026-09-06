@@ -1,0 +1,12 @@
+# Optional — only takes effect if this site is deployed on Netlify.
+# For Vercel, Cloudflare Pages, or a custom server, these headers need to be
+# configured in that platform's equivalent config (vercel.json, _headers,
+# nginx.conf, etc.) since plain HTML/meta tags cannot set most of these.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  X-Frame-Options: DENY
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; img-src 'self' https://images.unsplash.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-ancestors 'none';
